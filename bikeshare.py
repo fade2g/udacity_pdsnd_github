@@ -266,9 +266,9 @@ def handle_raw(df):
     page_size = 5
     start_pos = 0
     more = None
-    while more != '0':
+    while more != 'quit':
         print(df[start_pos:(start_pos + page_size)])
-        more = _get_possible_answer(f'Enter \'+\' for the next {page_size} rows. \'0\' will exit.', ['+', '0'])
+        more = _get_possible_answer(f'Enter \'+\' for the next {page_size} rows. \'quit\' will exit.', ['+', 'quit'])
         if more == '+':
             start_pos += page_size
 
