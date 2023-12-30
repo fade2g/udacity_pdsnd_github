@@ -10,6 +10,8 @@ CITY_DATA = {'chicago': 'chicago.csv',
 MONTH_DICT = {0: 'all', 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June'}
 DAYS_OF_WEEK_DICT = {0: 'all', 1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday',
                      7: 'Sunday'}
+# Path to the CSV file
+DATA_ROOT_PATH = 'data/{filename}'
 
 
 def get_city():
@@ -105,7 +107,7 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    df = pd.read_csv(f'data/{CITY_DATA[city]}',
+    df = pd.read_csv(DATA_ROOT_PATH.format(filename=CITY_DATA[city]),
                      parse_dates=['Start Time', 'End Time'],
                      date_format={1: '%Y-%m-%d %H:%M:%S'})
 
