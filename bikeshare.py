@@ -20,6 +20,7 @@ DAYS_OF_WEEK_DICT = {0: 'all', 1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Th
 def get_city():
     """
     Asks a user to enter the name of the city to be analysed. Allowed cities are limited to the available data
+    that is defined in the `CITY_DATA` dict
     :return: (str) The name of the city to be analysed
     """
     success = False
@@ -37,7 +38,7 @@ def get_city():
 
 def get_month():
     """
-    Asks a user to enter the month to be analysed,
+    Asks a user to enter the month to be analysed. Allowed months are defined in the `MONTH_DICT` dict
     :return: (int) 0 for all months, otherwise 1 to 6 for the number of the month (January to June)
     """
     success = False
@@ -57,7 +58,8 @@ def get_month():
 
 def get_day_of_week():
     """
-    Asks a user for the day of the week to be analysed (e.g. only thuesdays or all days)
+    Asks a user for the day of the week to be analysed (e.g. only Thuesdays or all days). The available selection is
+    based on the `DAYS_OF_WEEK_DICT` dict
     :return: (int) 0 for no day of week filter, 1 to 7 for Monday to Sunday
     """
     print('Which day of the week shall be analyzed?')
