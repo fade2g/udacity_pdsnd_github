@@ -138,8 +138,11 @@ def _find_mode_and_count_for_column(df, col):
 
 
 def time_stats(df):
-    """Displays statistics on the most frequent times of travel."""
-
+    """
+    Displays statistics on the most frequent times of travel.
+    :param df: (DataFrame) Data Frame to be analyzes
+    :return:
+    """
     print('\nCalculating The Most Frequent Times of Travel...')
     start_time = time.time()
     df_start = df[['Start Time']].copy()
@@ -162,8 +165,11 @@ def time_stats(df):
 
 
 def station_stats(df):
-    """Displays statistics on the most popular stations and trip."""
-
+    """
+    on the most popular stations and trip.
+    :param df: (DataFrame) Data Frame to be analyzes
+    :return:
+    """
     print('\nCalculating The Most Popular Stations and Trip...')
     start_time = time.time()
     df_start = df[['Start Station', 'End Station']].copy()
@@ -181,8 +187,11 @@ def station_stats(df):
 
 
 def trip_duration_stats(df):
-    """Displays statistics on the total and average trip duration."""
-
+    """
+    Displays statistics on the total and average trip duration.
+    :param df: (DataFrame) Data Frame to be analyzes
+    :return:
+    """
     print('\nCalculating Trip Duration...')
     start_time = time.time()
 
@@ -202,7 +211,7 @@ def trip_duration_stats(df):
 def _user_stats(df, cols):
     """
     Internal function that groups the dataframe by the cols and displays the results of occurrences
-    :param df: Data Frame to be analyzes
+    :param df: (DataFrame) Data Frame to be analyzes
     :param cols: String containing the columns, by which the dataframe shall be grouped
     :return:
     """
@@ -214,8 +223,11 @@ def _user_stats(df, cols):
 
 
 def user_stats(df):
-    """Displays statistics on bikeshare users."""
-
+    """
+    Displays statistics on bikeshare users.
+    :param df: (DataFrame) Data Frame to be analyzes
+    :return:
+    """
     print('\nCalculating User Stats...')
     start_time = time.time()
 
@@ -243,6 +255,11 @@ def user_stats(df):
 
 
 def handle_statistics(df):
+    """
+    Display specific descriptive statistics
+    :param df: (DataFrame) loaded dataframe
+    :return:
+    """
     time_stats(df)
     station_stats(df)
     trip_duration_stats(df)
@@ -262,6 +279,11 @@ def _get_possible_answer(question, possible_answers):
 
 
 def handle_raw(df):
+    """
+    Display raw dataframe data to the user. The user can navigate/show next slice/frame of the data frame
+    :param df: (DataFrame) loaded dataframe
+    :return:
+    """
     pd.set_option('display.max_columns', 200)
     page_size = 5
     start_pos = 0
@@ -274,6 +296,13 @@ def handle_raw(df):
 
 
 def main():
+    """
+    Main program loop to retrieve information for the scope of the analysis.
+
+    The user can enter the city timeframe for the to be analysed as well as the output format
+    (i.e. statistics of raw data)
+    :return:
+    """
     while True:
         city, month, day = get_filters()
 
