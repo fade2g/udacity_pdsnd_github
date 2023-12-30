@@ -132,8 +132,8 @@ def load_data(city, month, day):
 def _find_mode_and_count_for_column(df, col):
     """
     Calculates the mode of a column and also returns the number of rides for the corresponding mode
-    :param df: DataFrame that contains the column
-    :param col: (str) Name of the column
+    :param df: (DataFrame) Dataframe that contains the column of which the mode shall be calculated
+    :param col: (str) Name of the column for which the mode is calculated
     :return:
     """
 
@@ -147,7 +147,7 @@ def _find_mode_and_count_for_column(df, col):
 def time_stats(df):
     """
     Displays statistics on the most frequent times of travel.
-    :param df: (DataFrame) Data Frame to be analyzes
+    :param df: (DataFrame) Data Frame to be analyzed
     :return:
     """
     print('\nCalculating The Most Frequent Times of Travel...')
