@@ -4,10 +4,15 @@ import datetime
 import pandas as pd
 import numpy as np
 
+# DICT that maps city names to the corresponding CSV file
 CITY_DATA = {'chicago': 'chicago.csv',
              'new york city': 'new_york_city.csv',
              'washington': 'washington.csv'}
+
+# DICT for selecting a month for limiting the scope of the data analysis
 MONTH_DICT = {0: 'all', 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June'}
+
+# DICT for selecting a day of the week for limiting the scope of the data analysis
 DAYS_OF_WEEK_DICT = {0: 'all', 1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday',
                      7: 'Sunday'}
 # Path to the CSV file
@@ -17,6 +22,7 @@ DATA_ROOT_PATH = 'data/{filename}'
 def get_city():
     """
     Asks a user to enter the name of the city to be analysed. Allowed cities are limited to the available data
+    that is defined in the `CITY_DATA` dict
     :return: (str) The name of the city to be analysed
     """
     success = False
@@ -34,7 +40,7 @@ def get_city():
 
 def get_month():
     """
-    Asks a user to enter the month to be analysed,
+    Asks a user to enter the month to be analysed. Allowed months are defined in the `MONTH_DICT` dict
     :return: (int) 0 for all months, otherwise 1 to 6 for the number of the month (January to June)
     """
     success = False
@@ -54,7 +60,8 @@ def get_month():
 
 def get_day_of_week():
     """
-    Asks a user for the day of the week to be analysed (e.g. only thuesdays or all days)
+    Asks a user for the day of the week to be analysed (e.g. only Thuesdays or all days). The available selection is
+    based on the `DAYS_OF_WEEK_DICT` dict
     :return: (int) 0 for no day of week filter, 1 to 7 for Monday to Sunday
     """
     print('Which day of the week shall be analyzed?')
@@ -127,8 +134,8 @@ def load_data(city, month, day):
 def _find_mode_and_count_for_column(df, col):
     """
     Calculates the mode of a column and also returns the number of rides for the corresponding mode
-    :param df: DataFrame that contains the column
-    :param col: (str) Name of the column
+    :param df: (DataFrame) Dataframe that contains the column of which the mode shall be calculated
+    :param col: (str) Name of the column for which the mode is calculated
     :return:
     """
 
@@ -140,8 +147,11 @@ def _find_mode_and_count_for_column(df, col):
 
 
 def time_stats(df):
-    """Displays statistics on the most frequent times of travel."""
-
+    """
+    Displays statistics on the most frequent times of travel.
+    :param df: (DataFrame) Data Frame to be analyzed
+    :return:
+    """
     print('\nCalculating The Most Frequent Times of Travel...')
     start_time = time.time()
     df_start = df[['Start Time']].copy()
@@ -164,8 +174,11 @@ def time_stats(df):
 
 
 def station_stats(df):
-    """Displays statistics on the most popular stations and trip."""
-
+    """
+    on the most popular stations and trip.
+    :param df: (DataFrame) Data Frame to be analyzes
+    :return:
+    """
     print('\nCalculating The Most Popular Stations and Trip...')
     start_time = time.time()
     df_start = df[['Start Station', 'End Station']].copy()
@@ -183,8 +196,11 @@ def station_stats(df):
 
 
 def trip_duration_stats(df):
-    """Displays statistics on the total and average trip duration."""
-
+    """
+    Displays statistics on the total and average trip duration.
+    :param df: (DataFrame) Data Frame to be analyzes
+    :return:
+    """
     print('\nCalculating Trip Duration...')
     start_time = time.time()
 
@@ -204,7 +220,7 @@ def trip_duration_stats(df):
 def _user_stats(df, cols):
     """
     Internal function that groups the dataframe by the cols and displays the results of occurrences
-    :param df: Data Frame to be analyzes
+    :param df: (DataFrame) Data Frame to be analyzes
     :param cols: String containing the columns, by which the dataframe shall be grouped
     :return:
     """
@@ -216,8 +232,11 @@ def _user_stats(df, cols):
 
 
 def user_stats(df):
-    """Displays statistics on bikeshare users."""
-
+    """
+    Displays statistics on bikeshare users.
+    :param df: (DataFrame) Data Frame to be analyzes
+    :return:
+    """
     print('\nCalculating User Stats...')
     start_time = time.time()
 
@@ -245,6 +264,11 @@ def user_stats(df):
 
 
 def handle_statistics(df):
+    """
+    Display specific descriptive statistics
+    :param df: (DataFrame) loaded dataframe
+    :return:
+    """
     time_stats(df)
     station_stats(df)
     trip_duration_stats(df)
@@ -264,6 +288,11 @@ def _get_possible_answer(question, possible_answers):
 
 
 def handle_raw(df):
+    """
+    Display raw dataframe data to the user. The user can navigate/show next slice/frame of the data frame
+    :param df: (DataFrame) loaded dataframe
+    :return:
+    """
     pd.set_option('display.max_columns', 200)
     page_size = 5
     start_pos = 0
@@ -276,6 +305,13 @@ def handle_raw(df):
 
 
 def main():
+    """
+    Main program loop to retrieve information for the scope of the analysis.
+
+    The user can enter the city timeframe for the to be analysed as well as the output format
+    (i.e. statistics of raw data)
+    :return:
+    """
     while True:
         city, month, day = get_filters()
 
