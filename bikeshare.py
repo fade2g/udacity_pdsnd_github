@@ -4,10 +4,15 @@ import datetime
 import pandas as pd
 import numpy as np
 
+# DICT that maps city names to the corresponding CSV file
 CITY_DATA = {'chicago': 'chicago.csv',
              'new york city': 'new_york_city.csv',
              'washington': 'washington.csv'}
+
+# DICT for selecting a month for limiting the scope of the data analysis
 MONTH_DICT = {0: 'all', 1: 'January', 2: 'February', 3: 'March', 4: 'April', 5: 'May', 6: 'June'}
+
+# DICT for selecting a day of the week for limiting the scope of the data analysis
 DAYS_OF_WEEK_DICT = {0: 'all', 1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday',
                      7: 'Sunday'}
 
